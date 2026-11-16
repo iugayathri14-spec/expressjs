@@ -4,7 +4,8 @@ const app = express();
 app.use(express.json());
 
 const products = [];
-
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
 // Create a product - POST http://localhost:5000/products
 app.post("/products", (req, res) => {
   const newProduct = req.body;
@@ -54,7 +55,9 @@ app.delete("/products/:id", (req, res) => {
     res.status(404).json({ message: "Product not found" });
   }
 });
-
+app.get("/", (req, res) => {
+  res.send("Hello, Express is running!");
+});
 app.listen(5000, () => {
   console.log("Server running at http://localhost:5000");
 });
